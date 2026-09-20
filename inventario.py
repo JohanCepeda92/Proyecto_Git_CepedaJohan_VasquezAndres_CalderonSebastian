@@ -40,3 +40,24 @@ def registrar_item():
     guardar_inventario(inventario)
 
     print(f'Ítem "{titulo}" registrado exitosamente. Disponibles: {cantidad}')
+
+def listar_items():
+    inventario = cargar_inventario()
+
+    if not inventario:
+        print("No hay ítems registrados.")
+        return
+
+    print("\n========== INVENTARIO ==========")
+
+    for item in inventario:
+        print(f"Código: {item['codigo']}")
+        print(f"Título: {item['titulo']}")
+        print(f"Autor: {item['autor']}")
+        print(f"Categoría: {item['categoria']}")
+        print(f"Cantidad total: {item['cantidad_total']}")
+        print(f"Cantidad disponible: {item['cantidad_disponible']}")
+        print(f"Ubicación: {item['ubicacion']}")
+        print("--------------------------------")
+
+        
