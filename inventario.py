@@ -60,4 +60,31 @@ def listar_items():
         print(f"Ubicación: {item['ubicacion']}")
         print("--------------------------------")
 
-        
+def buscar_item():
+    inventario = cargar_inventario()
+
+    termino = input("Ingrese el código o título a buscar: ").strip().lower()
+
+    encontrados = []
+
+    for item in inventario:
+        if (
+            termino in item["codigo"].lower()
+            or termino in item["titulo"].lower()
+        ):
+            encontrados.append(item)
+
+    if not encontrados:
+        print("No se encontraron ítems.")
+        return
+
+    print("\n========== RESULTADOS ==========")
+
+    for item in encontrados:
+        print(f"Código: {item['codigo']}")
+        print(f"Título: {item['titulo']}")
+        print(f"Autor: {item['autor']}")
+        print(f"Categoría: {item['categoria']}")
+        print(f"Cantidad disponible: {item['cantidad_disponible']}")
+        print(f"Ubicación: {item['ubicacion']}")
+        print("--------------------------------") 
