@@ -20,12 +20,17 @@ def registrar_item():
     inventario = cargar_inventario()
 
     codigo = input("Ingrese el código del ítem: ").strip()
+
+    for item in inventario:
+        if item["codigo"].lower() == codigo.lower():
+            print("Error: ya existe un ítem con ese código.")
+            return
+
     titulo = input("Ingrese el título: ").strip()
     autor = input("Ingrese el autor: ").strip()
     categoria = input("Ingrese la categoría: ").strip()
     cantidad = int(input("Ingrese la cantidad total: "))
     ubicacion = input("Ingrese la ubicación: ").strip()
-
     nuevo_item = {
         "codigo": codigo,
         "titulo": titulo,
