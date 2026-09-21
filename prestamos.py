@@ -54,3 +54,46 @@ def registrar_prestamo():
         f'Préstamo registrado para el ítem {codigo}. '
         f'Disponibles: {item_encontrado["cantidad_disponible"]}'
     )
+
+def registrar_devolucion():
+    prestamos = cargar_prestamos()
+    inventario = cargar_inventario()
+
+    codigo = input("Ingrese el código del ítem: ").strip()
+    usuario = input("Ingrese el nombre del usuario: ").strip()
+
+    prestamo_encontrado = None
+
+    for prestamo in prestamos:
+        if (
+            prestamo["codigo"].lower() == codigo.lower()
+            and prestamo["usuario"].lower() == usuario.lower()
+        ):
+            prestamo_encontrado = prestamo
+            break
+
+    if prestamo_encontrado is None:
+        print("Error: no existe un préstamo registrado para ese usuario y ese ítem.")
+        return
+
+    item_encontrado = None
+
+    for item in inventario:
+        if item["codigo"].lower() == codigo.lower():
+            item_encontrado = item
+            break
+
+    if item_encontrado is None:
+        print("Error: el ítem no existe en el inventario.")
+        return
+
+    prestamos.remove(prestamo_encontrado)
+    item_encontrado["cantidad_disponible"] += 1
+
+    guardar_prestamos(prestamos)
+    guardar_inventario(inventario)
+
+    print(
+        f"Devolución registrada para el ítem {codigo}. "
+        f"Disponibles: {item_encontrado['cantidad_disponible']}"
+    )
