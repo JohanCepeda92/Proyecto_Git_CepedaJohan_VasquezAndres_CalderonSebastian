@@ -1,5 +1,10 @@
+from inventario import registrar_item, listar_items, buscar_item
+from prestamos import registrar_prestamo, registrar_devolucion
+
+
 print("BiblioStock - Biblioteca Horizonte")
 print("Sistema de inventario y préstamos")
+
 
 def mostrar_menu():
     print("\n==========================================")
@@ -12,3 +17,36 @@ def mostrar_menu():
     print("5. Registrar devolución")
     print("6. Salir")
     print("==========================================")
+
+
+def ejecutar_menu():
+    while True:
+        mostrar_menu()
+
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == "1":
+            registrar_item()
+
+        elif opcion == "2":
+            listar_items()
+
+        elif opcion == "3":
+            buscar_item()
+
+        elif opcion == "4":
+            registrar_prestamo()
+
+        elif opcion == "5":
+            registrar_devolucion()
+
+        elif opcion == "6":
+            print("Gracias por utilizar BiblioStock.")
+            break
+
+        else:
+            print("Opción inválida. Intente nuevamente.")
+
+
+if __name__ == "__main__":
+    ejecutar_menu()

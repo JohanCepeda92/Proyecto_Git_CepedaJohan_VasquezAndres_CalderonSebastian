@@ -26,7 +26,7 @@ def registrar_prestamo():
     item_encontrado = None
 
     for item in inventario:
-        if item["codigo"].lower() == codigo.lower():
+        if str(item["codigo"]).strip().lower() == codigo.strip().lower():
             item_encontrado = item
             break
 
